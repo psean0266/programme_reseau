@@ -8,16 +8,46 @@ namespace programme_reseau
         static void Main(string[] args)
         {
             
-          string url ="https://codeavecjonathan.com/res/exemple.html" ;
+          //string url ="https://codeavecjonathan.com/res/exemple.html" ;
             //   string url = "https://codeavecjonathan.com/res/exemple.txt";
-           // string url = "https://codeavecjonathan.com/res/pizza1.Json";
+           string url = "https://codeavec jonathan.com/res/pizzasssssssssss1.Json";
 
 
           var  webClient = new WebClient();
-          string reponse =  webClient.DownloadString(url);
+          
 
           Console.WriteLine("Acces au reseau");
-          Console.WriteLine(reponse);   
+        
+
+            try
+            {
+                string reponse = webClient.DownloadString(url);
+                Console.WriteLine(reponse);
+            }
+            catch (WebException ex)
+            {
+                var statusCode = ((HttpWebResponse)ex.Response).StatusCode;
+               
+                if(ex.Response != null) {
+
+                    if (statusCode == HttpStatusCode.NotFound)
+                    {
+                        Console.WriteLine("ERREUR RESEAU : Non trouvé ");
+                    }
+                    else
+                    {
+                        Console.WriteLine(" ERREUR RESEAU : " + statusCode);
+                    }
+
+                }
+
+                else
+                {
+                    Console.WriteLine(" ERREUR RESEAU : " + ex.Message);
+                }
+
+
+            }
 
 
         }
