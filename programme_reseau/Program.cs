@@ -28,14 +28,24 @@ namespace programme_reseau
             {
                 var statusCode = ((HttpWebResponse)ex.Response).StatusCode;
                
+                if(ex.Response != null) {
 
-                if (statusCode == HttpStatusCode.NotFound) {
-                    Console.WriteLine("ERREUR RESEAU : Non trouvé " );
+                    if (statusCode == HttpStatusCode.NotFound)
+                    {
+                        Console.WriteLine("ERREUR RESEAU : Non trouvé ");
+                    }
+                    else
+                    {
+                        Console.WriteLine(" ERREUR RESEAU : " + statusCode);
+                    }
+
                 }
+
                 else
                 {
-                    Console.WriteLine(" ERREUR RESEAU : " + statusCode);
+                    Console.WriteLine(" ERREUR RESEAU : " + ex.Message);
                 }
+
 
             }
 
